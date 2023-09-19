@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AdoptME</title>
+</head>
+<body>
+  <h1>Estos son los usuarios copados que se registraron</h1>
+
+  <ul id="users"></ul>
+
+  <script>
+    fetch('/api/users')
+      .then(response => response.json())
+      .then(users => {
+        let usersHTML = ''
+        for (const user of users.payload) {
+          usersHTML += `<li>${user.username}</li>`
+        }
+        document.getElementById('users').innerHTML = usersHTML
+      })
+  </script>
+</body>
+</html>
